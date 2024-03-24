@@ -45,6 +45,8 @@ void MoneyManager::addIncomeCategory()
 void MoneyManager::runApplication()
 {
     cout << "Starting money manager application" << endl;
+
+    cout << "Stopping the application" << endl;
 }
 
 int main()
