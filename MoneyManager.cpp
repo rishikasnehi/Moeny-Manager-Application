@@ -1,3 +1,6 @@
+/* run this command to execute th eprogram :
+g++.\MoneyManager.cpp.\utils.cpp.\utils.h - o code.exe;
+.\code.exe */
 #include <iostream>
 #include <stdlib.h>
 #include <sstream>
@@ -5,22 +8,8 @@
 #include <vector>
 
 #include "utils.h"
-
+#include "classT.h"
 using namespace std;
-
-class Transaction
-{
-public:
-    string date, note;
-    float amount;
-
-    Transaction(string tx_date, float tx_amt, string tx_note)
-    {
-        date = tx_date;
-        amount = tx_amt;
-        note = tx_note;
-    }
-};
 
 class MoneyManager
 {
@@ -36,10 +25,28 @@ public:
     void runApplication();
     int getType();
 
+    MoneyManager()
+    {
+        loadData();
+    }
+
 private:
     int addIncomeCategory();
     void addExpenseCategory();
+    void loadData();
+    void storeData();
 };
+
+void MoneyManager::loadData()
+{
+    // read transactions from the file
+    // and load them up in incomeTransactions and expenseTransactions
+}
+
+void MoneyManager::storeData()
+{
+    // write transactions present in incomeTransactions and expenseTransactions to file
+}
 
 void MoneyManager::addExpense()
 {
@@ -127,6 +134,7 @@ void MoneyManager::runApplication()
             showBalance();
             break;
         case 5:
+            storeData();
             return;
         }
     }
@@ -137,4 +145,5 @@ int main()
 {
     MoneyManager mm;
     mm.runApplication();
+    // Transaction obj;
 }

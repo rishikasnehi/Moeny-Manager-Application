@@ -1,0 +1,2 @@
+Debit,20/12/2910,2300,test-note
+Credit,20/24/2144,1234,test-note-2
