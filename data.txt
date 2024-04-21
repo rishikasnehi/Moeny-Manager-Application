@@ -1,5 +1,5 @@
 Type	Date	Amount	Note
-Credit	23/3/24	1000	bonus
-Credit	24/3/24	20000	in acoount
-Debit	25/3/24	200	apples
-Debit	26/3/24	2000	grocery
+Credit	1/2/24	10000	cash
+Credit	2/2/24	20000	in account
+Debit	3/2/24	3000	furniture
+Debit	4/2/24	4000	clothes
