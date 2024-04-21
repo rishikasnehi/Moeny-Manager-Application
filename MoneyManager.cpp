@@ -44,6 +44,14 @@ void MoneyManager::loadData()
     // and load them up in incomeTransactions and expenseTransactions;
     ifstream fin;
     fin.open("data.txt");
+    string line;
+    string data;
+    while (getline(fin, line))
+    {
+        data += line + "\n";
+    }
+    cout << data;
+    fin.close();
 }
 
 void MoneyManager::storeData()
@@ -51,7 +59,8 @@ void MoneyManager::storeData()
     // write transactions present in incomeTransactions and expenseTransactions to file
     ofstream out;
     out.open("data.txt");
-    out << "Date "
+    out << "Type"
+        << "\tDate"
         << "\tAmount"
         << "\tNote" << endl;
     string date_file, note_file;
@@ -61,14 +70,16 @@ void MoneyManager::storeData()
         date_file = transaction->date;
         amount_file = transaction->amount;
         note_file = transaction->note;
-        out << date_file << "\t" << amount_file << "\t" << note_file << endl;
+        out << "Credit"
+            << "\t" << date_file << "\t" << amount_file << "\t" << note_file << endl;
     }
     for (auto transaction : expenseTransactions)
     {
         date_file = transaction->date;
         amount_file = transaction->amount;
         note_file = transaction->note;
-        out << date_file << "\t" << amount_file << "\t" << note_file << endl;
+        out << "Debit"
+            << "\t" << date_file << "\t" << amount_file << "\t" << note_file << endl;
     }
     out.close();
 }
@@ -141,6 +152,8 @@ int MoneyManager::addIncomeCategory()
 int MoneyManager::runApplication()
 {
     cout << "Starting money manager application" << endl;
+    cout << "Previous transactions : " << endl;
+    loadData();
     while (1)
     {
         int choice = getType();
