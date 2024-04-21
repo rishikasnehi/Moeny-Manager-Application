@@ -6,6 +6,7 @@ g++.\MoneyManager.cpp.\utils.cpp.\utils.h - o code.exe;
 #include <sstream>
 #include <string.h>
 #include <vector>
+#include <fstream>
 
 #include "utils.h"
 #include "classT.h"
@@ -22,7 +23,7 @@ public:
     void addIncome();
     void showTransaction();
     void showBalance();
-    void runApplication();
+    int runApplication();
     int getType();
 
     MoneyManager()
@@ -40,12 +41,34 @@ private:
 void MoneyManager::loadData()
 {
     // read transactions from the file
-    // and load them up in incomeTransactions and expenseTransactions
+    // and load them up in incomeTransactions and expenseTransactions;
 }
 
 void MoneyManager::storeData()
 {
     // write transactions present in incomeTransactions and expenseTransactions to file
+    ofstream out;
+    out.open("incomeTransaction.txt");
+    out << "Date "
+        << "\tAmount"
+        << "\tNote" << endl;
+    string date_file, note_file;
+    float amount_file;
+    for (auto transaction : incomeTransactions)
+    {
+        date_file = transaction->date;
+        amount_file = transaction->amount;
+        note_file = transaction->note;
+        out << date_file << "\t" << amount_file << "\t" << note_file << endl;
+    }
+    for (auto transaction : expenseTransactions)
+    {
+        date_file = transaction->date;
+        amount_file = transaction->amount;
+        note_file = transaction->note;
+        out << date_file << "\t" << amount_file << "\t" << note_file << endl;
+    }
+    out.close();
 }
 
 void MoneyManager::addExpense()
@@ -113,10 +136,10 @@ int MoneyManager::addIncomeCategory()
 {
 }
 
-void MoneyManager::runApplication()
+int MoneyManager::runApplication()
 {
     cout << "Starting money manager application" << endl;
-    for (int i = 1; i < 10; i++)
+    while (1)
     {
         int choice = getType();
         switch (choice)
@@ -135,7 +158,7 @@ void MoneyManager::runApplication()
             break;
         case 5:
             storeData();
-            return;
+            return 1;
         }
     }
     cout << "Stopping the application" << endl;
@@ -145,5 +168,4 @@ int main()
 {
     MoneyManager mm;
     mm.runApplication();
-    // Transaction obj;
 }
