@@ -42,13 +42,15 @@ void MoneyManager::loadData()
 {
     // read transactions from the file
     // and load them up in incomeTransactions and expenseTransactions;
+    ifstream fin;
+    fin.open("data.txt");
 }
 
 void MoneyManager::storeData()
 {
     // write transactions present in incomeTransactions and expenseTransactions to file
     ofstream out;
-    out.open("incomeTransaction.txt");
+    out.open("data.txt");
     out << "Date "
         << "\tAmount"
         << "\tNote" << endl;
